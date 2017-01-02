@@ -26,10 +26,6 @@ class Dealer(Player):
         self.game = game
         self.deck = Deck(game.get_deck_type())
 
-    def shuffle(self):
-        # TODO
-        pass
-
     def take_turn(self):
         # TODO
         pass
@@ -40,4 +36,4 @@ class Dealer(Player):
 
     def start_game(self):
         # TODO
-        pass
+        self.deck.shuffle()
