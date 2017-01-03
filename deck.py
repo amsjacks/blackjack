@@ -1,20 +1,24 @@
+from card import Card
+
+
 class Deck(object):
-    types = {"Standard": [("Ace", "Hearts"), ("Two", "Hearts"), ("Three", "Hearts"), ("Four", "Hearts"),
-                          ("Five", "Hearts"), ("Six", "Hearts"), ("Seven", "Hearts"),
-                          ("Eight", "Hearts"), ("Nine", "Hearts"), ("Ten", "Hearts"),
-                          ("Jack", "Hearts"), ("Queen", "Hearts"), ("King", "Hearts"),
-                          ("Ace", "Spades"), ("Two", "Spades"), ("Three", "Spades"), ("Four", "Spades"),
-                          ("Five", "Spades"), ("Six", "Spades"), ("Seven", "Spades"),
-                          ("Eight", "Spades"), ("Nine", "Spades"), ("Ten", "Spades"),
-                          ("Jack", "Spades"), ("Queen", "Spades"), ("King", "Spades"),
-                          ("Ace", "Clubs"), ("Two", "Clubs"), ("Three", "Clubs"), ("Four", "Clubs"),
-                          ("Five", "Clubs"), ("Six", "Clubs"), ("Seven", "Clubs"),
-                          ("Eight", "Clubs"), ("Nine", "Clubs"), ("Ten", "Clubs"),
-                          ("Jack", "Clubs"), ("Queen", "Clubs"), ("King", "Clubs"),
-                          ("Ace", "Diamonds"), ("Two", "Diamonds"), ("Three", "Diamonds"), ("Four", "Diamonds"),
-                          ("Five", "Diamonds"), ("Six", "Diamonds"), ("Seven", "Diamonds"),
-                          ("Eight", "Diamonds"), ("Nine", "Diamonds"), ("Ten", "Diamonds"),
-                          ("Jack", "Diamonds"), ("Queen", "Diamonds"), ("King", "Diamonds")]}
+    types = {"Standard": [Card("Ace", "Hearts"), Card("Two", "Hearts"), Card("Three", "Hearts"), Card("Four", "Hearts"),
+                          Card("Five", "Hearts"), Card("Six", "Hearts"), Card("Seven", "Hearts"),
+                          Card("Eight", "Hearts"), Card("Nine", "Hearts"), Card("Ten", "Hearts"),
+                          Card("Jack", "Hearts"), Card("Queen", "Hearts"), Card("King", "Hearts"),
+                          Card("Ace", "Spades"), Card("Two", "Spades"), Card("Three", "Spades"), Card("Four", "Spades"),
+                          Card("Five", "Spades"), Card("Six", "Spades"), Card("Seven", "Spades"),
+                          Card("Eight", "Spades"), Card("Nine", "Spades"), Card("Ten", "Spades"),
+                          Card("Jack", "Spades"), Card("Queen", "Spades"), Card("King", "Spades"),
+                          Card("Ace", "Clubs"), Card("Two", "Clubs"), Card("Three", "Clubs"), Card("Four", "Clubs"),
+                          Card("Five", "Clubs"), Card("Six", "Clubs"), Card("Seven", "Clubs"),
+                          Card("Eight", "Clubs"), Card("Nine", "Clubs"), Card("Ten", "Clubs"),
+                          Card("Jack", "Clubs"), Card("Queen", "Clubs"), Card("King", "Clubs"),
+                          Card("Ace", "Diamonds"), Card("Two", "Diamonds"), Card("Three", "Diamonds"),
+                          Card("Four", "Diamonds"),
+                          Card("Five", "Diamonds"), Card("Six", "Diamonds"), Card("Seven", "Diamonds"),
+                          Card("Eight", "Diamonds"), Card("Nine", "Diamonds"), Card("Ten", "Diamonds"),
+                          Card("Jack", "Diamonds"), Card("Queen", "Diamonds"), Card("King", "Diamonds")]}
 
     def __init__(self, deck_type, size=1):
         self.cards = []
@@ -25,6 +29,7 @@ class Deck(object):
                 x += 1
             except:
                 print("Error: deck type is not supported")
+                break
 
     def __len__(self):
         return len(self.cards)
@@ -41,7 +46,3 @@ class Deck(object):
 
     def next_card(self):
         return self.cards.pop()
-
-    @staticmethod
-    def card_name(card):
-        return "{} of {}".format(card[0], card[1])
