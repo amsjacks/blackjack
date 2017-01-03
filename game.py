@@ -7,14 +7,24 @@ class Game(object):
 
 
 class Blackjack(Game):
-    def __init__(self):
+    starting_hand = 2
+
+    def __init__(self, decks=1):
         # TODO
         Game.__init__(self, "Standard")
+        self.decks = decks
+
 
     def win(self, player):
+        # TODO
+        pass
+
+    def bust(self, player):
         # TODO
         pass
 
     def game_over(self):
         # TODO
         pass
+
+
