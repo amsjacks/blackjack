@@ -1,4 +1,5 @@
 from card import Card
+import random
 
 
 class Deck(object):
@@ -35,7 +36,7 @@ class Deck(object):
         return len(self.cards)
 
     def shuffle(self):
-        # TODO
+        random.shuffle(self.cards)
         pass
 
     def add_card(self, card):
