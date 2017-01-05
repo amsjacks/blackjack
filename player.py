@@ -48,7 +48,7 @@ class Player(object):
     def show_hand(self):
         for card in self.hand:
             if card.revealed:
-                print(card.get_name)
+                print(card.get_name())
             else:
                 print("This card has not been revealed.")
 
