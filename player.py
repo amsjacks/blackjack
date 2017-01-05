@@ -1,4 +1,4 @@
-from deck import Deck
+from game import Blackjack
 
 class Player(object):
     def __init__(self, name, money=100):
@@ -9,8 +9,14 @@ class Player(object):
         self.bet = 0
 
     def join_game(self, game):
-        # TODO
-        pass
+        game.add_player(self)
+        self.game = game
+
+    def start_game(self, game_type):
+        if game_type == "Blackjack":
+            self.game = Blackjack([self])
+        else:
+            print("That game type is not available.")
 
     def stand(self):
         # TODO
@@ -22,6 +28,7 @@ class Player(object):
 
     def bet(self, amount):
         self.bet += amount
+        self.game.add_to_pot(amount)
         self.money -= amount
         print("{} has bet a total of {}. They have {} remaining.".format(self.name, self.bet, self.money))
 
@@ -44,19 +51,7 @@ class Player(object):
         player.show_hand()
 
 
-class Dealer(Player):
-    def __init__(self, game, name="Dealer"):
-        Player.__init__(self, name)
-        self.game = game
-        self.deck = Deck(game.get_deck_type(), )
 
-    def take_turn(self):
-        # TODO
-        pass
 
-    def deal(self):
-        # TODO
-        pass
 
-    def start_game(self):
-        self.deck.shuffle()
+

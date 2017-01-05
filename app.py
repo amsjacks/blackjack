@@ -1,6 +1,4 @@
-from deck import Deck
+from player import Player
 
-
-deck = Deck("Standard")
-deck.shuffle()
-print(deck.next_card().get_name())
+jack = Player("Jack")
+jack.start_game("Blackjack")
