@@ -32,6 +32,7 @@ class Blackjack(Game):
         self.players = players
         self.dealer = Dealer(Blackjack.deck_type, self)
         self.pot = 0
+        self.turn = 0
 
     def add_to_pot(self, amount):
         self.pot += amount
@@ -47,6 +48,16 @@ class Blackjack(Game):
     def game_over(self):
         # TODO
         pass
+
+    def next_turn(self):
+        if self.turn in range(len(self.players)+1):
+            self.turn += 1
+        else:
+            self.turn = 0
+        try:
+            self.players[self.turn].take_turn()
+        except:
+            self.dealer.take_turn()
 
     def get_starting_hand(self):
         return Blackjack.starting_hand

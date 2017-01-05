@@ -21,12 +21,21 @@ class Player(object):
             print("That game type is not available.")
 
     def stand(self):
-        # TODO
-        pass
+        self.game.next_turn()
 
     def hit(self):
-        # TODO
-        pass
+        if self.has_doubled:
+            print("As you doubled last turn, you must stand.")
+            self.stand()
+        else:
+            dealer = self.game.get_dealer()
+            self.add_to_hand(dealer.deal())
+            self.show_hand()
+            if self.game.win(self) or self.game.bust(self):
+                # TODO: finish implementing once I figure out how I want to end games
+                pass
+            else:
+                self.game.next_turn()
 
     def bet(self, amount):
         self.bet += amount
@@ -51,6 +60,11 @@ class Player(object):
                 print(card.get_name())
             else:
                 print("This card has not been revealed.")
+
+    def take_turn(self):
+        # TODO: Think about expanding this into an instance of eventual Menu class
+        pass
+
 
     def dealer_hand(self):
         self.game.get_dealer().show_hand()
