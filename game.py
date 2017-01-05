@@ -12,6 +12,9 @@ class Game(object):
     def add_player(self, player):
         self.players.append(player)
 
+    def get_players(self):
+        return self.players
+
     def get_dealer(self):
         return self.dealer
 
@@ -44,3 +47,6 @@ class Blackjack(Game):
     def game_over(self):
         # TODO
         pass
+
+    def get_starting_hand(self):
+        return Blackjack.starting_hand

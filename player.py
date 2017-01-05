@@ -7,6 +7,7 @@ class Player(object):
         self.hand = []
         self.game = None
         self.bet = 0
+        self.has_doubled = False
 
     def join_game(self, game):
         game.add_player(self)
@@ -15,6 +16,7 @@ class Player(object):
     def start_game(self, game_type):
         if game_type == "Blackjack":
             self.game = Blackjack([self])
+            return self.game
         else:
             print("That game type is not available.")
 
@@ -36,6 +38,9 @@ class Player(object):
         # TODO
         pass
 
+    def add_to_hand(self, card):
+        self.hand.append(card)
+
     def own_hand(self):
         for card in self.hand:
             print(card.get_name())
@@ -47,8 +52,8 @@ class Player(object):
             else:
                 print("This card has not been revealed.")
 
-    def look_at_hand(self, player):
-        player.show_hand()
+    def dealer_hand(self):
+        self.game.get_dealer().show_hand()
 
 
 
