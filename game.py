@@ -31,8 +31,10 @@ class Blackjack(Game):
         assert isinstance(players, list)
         self.players = players
         self.dealer = Dealer(Blackjack.deck_type, self)
+        self.players.append(self.dealer)
         self.pot = 0
         self.turn = 0
+        self.dealer.first_deal()
 
     def add_to_pot(self, amount):
         self.pot += amount
@@ -45,12 +47,53 @@ class Blackjack(Game):
         # TODO
         pass
 
+    def evaluate_hand(self, player, hand):
+        value = 0
+        for card in hand:
+            if card[0] == "Ace":
+                # TODO: Check rules and see if ace can be high, modify if necessary
+                value += 1
+            elif card[0] == "Two":
+                value += 2
+            elif card[0] == "Three":
+                value += 3
+            elif card[0] == "Four":
+                value += 4
+            elif card[0] == "Five":
+                value += 5
+            elif card[0] == "Six":
+                value += 6
+            elif card[0] == "Seven":
+                value += 7
+            elif card[0] == "Eight":
+                value += 8
+            elif card[0] == "Nine":
+                value += 9
+            elif card[0] in ["Ten", "Jack", "Queen", "King"]:
+                value += 10
+        if value == 21:
+            print("{} has twenty-one!".format(player.name))
+            self.win(player)
+        elif value > 21:
+            print("{} has busted!".format(player.name))
+            self.remove_player(player)
+        else:
+            return value
+
+    def remove_player(self, player):
+        print("{} is out of the game!".format(player.name))
+        self.players.remove(player)
+        if len(self.players) == 1:
+            self.win(self.players[0])
+        else:
+            self.next_turn()
+
     def game_over(self):
         # TODO
         pass
 
     def next_turn(self):
-        if self.turn in range(len(self.players)+1):
+        if self.turn in range(len(self.players)):
             self.turn += 1
         else:
             self.turn = 0

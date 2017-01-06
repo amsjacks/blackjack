@@ -9,8 +9,13 @@ class Dealer(object):
         self.hand = []
 
     def take_turn(self):
-        # TODO
-        pass
+        score = self.game.evaluate(self.hand)
+        if score > 15:
+            self.game.next_turn()
+        else:
+            self.hand.append(self.deal())
+            self.game.evaluate(self.hand)
+            self.game.next_turn()
 
     def deal(self):
         card = self.deck.next_card()
@@ -18,7 +23,7 @@ class Dealer(object):
         return card
 
     def first_deal(self):
-        self.deck.shuffle()  # TODO
+        self.deck.shuffle()
         self.hand.append(self.deck.next_card())
         starting_hand = self.game.get_starting_hand()
         x = 0
@@ -31,6 +36,7 @@ class Dealer(object):
                 player.add_to_hand(self.deal())
                 y += 1
         print("All hands have been dealt!")
+        self.game.next_turn()
 
     def show_hand(self):
         for card in self.hand:
