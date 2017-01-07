@@ -39,12 +39,19 @@ class Blackjack(Game):
         self.pot += amount
 
     def win(self, player):
-        # TODO
-        pass
+        if not player == self.dealer:
+            player.add_to_money(self.pot)
+            print("{} has won ${}!".format(player.name, self.pot))
+        else:
+            print("The dealer has won this game!")
+        self.pot = 0
 
     def bust(self, player):
-        # TODO
-        pass
+        self.players.remove(player)
+        if len(self.players) == 1:
+            self.win(self.players[0])
+        else:
+            self.next_turn()
 
     def evaluate_hand(self, player, hand):
         value = 0
@@ -92,14 +99,14 @@ class Blackjack(Game):
         pass
 
     def next_turn(self):
+        try:
+            self.players[self.turn].take_turn()
+        except IndexError:
+            self.dealer.take_turn()
         if self.turn in range(len(self.players)):
             self.turn += 1
         else:
             self.turn = 0
-        try:
-            self.players[self.turn].take_turn()
-        except:
-            self.dealer.take_turn()
 
     def get_starting_hand(self):
         return Blackjack.starting_hand

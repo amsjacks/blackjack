@@ -43,6 +43,9 @@ class Player(object):
         self.money -= amount
         print("{} has bet a total of {}. They have {} remaining.".format(self.name, self.bet, self.money))
 
+    def add_to_money(self, amount):
+        self.money += amount
+
     def double(self):
         # TODO
         pass
@@ -63,14 +66,8 @@ class Player(object):
 
     def take_turn(self):
         # TODO: Think about expanding this into an instance of eventual Menu class
-        pass
+        print("Player takes turn")
 
 
     def dealer_hand(self):
         self.game.get_dealer().show_hand()
-
-
-
-
-
-

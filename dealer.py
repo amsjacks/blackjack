@@ -10,13 +10,16 @@ class Dealer(object):
         self.hand = []
 
     def take_turn(self):
+        '''
         score = self.game.evaluate_hand(self, self.hand)
         if score > 15:
             self.game.next_turn()
         else:
             self.hand.append(self.deal())
-            self.game.evaluate(self.hand)
+            self.game.evaluate_hand(self, self.hand)
             self.game.next_turn()
+        '''
+        print("Dealer takes turn")
 
     def deal(self):
         card = self.deck.next_card()
