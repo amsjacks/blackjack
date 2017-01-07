@@ -27,15 +27,12 @@ class Player(object):
         if self.has_doubled:
             print("As you doubled last turn, you must stand.")
             self.stand()
+            self.has_doubled = False
         else:
             dealer = self.game.get_dealer()
             self.add_to_hand(dealer.deal())
             self.show_hand()
-            if self.game.win(self) or self.game.bust(self):
-                # TODO: finish implementing once I figure out how I want to end games
-                pass
-            else:
-                self.game.next_turn()
+            self.game.evaluate_hand(self, self.hand)
 
     def bet(self, amount):
         self.bet += amount
@@ -47,8 +44,8 @@ class Player(object):
         self.money += amount
 
     def double(self):
-        # TODO
-        pass
+        self.bet(self.bet)
+        self.has_doubled = True
 
     def add_to_hand(self, card):
         self.hand.append(card)
