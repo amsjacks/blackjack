@@ -34,7 +34,6 @@ class Blackjack(Game):
         self.players.append(self.dealer)
         self.pot = 0
         self.turn = 0
-        self.dealer.first_deal()
 
     def add_to_pot(self, amount):
         self.pot += amount
@@ -50,26 +49,26 @@ class Blackjack(Game):
     def evaluate_hand(self, player, hand):
         value = 0
         for card in hand:
-            if card[0] == "Ace":
+            if card.get_face() == "Ace":
                 # TODO: Check rules and see if ace can be high, modify if necessary
                 value += 1
-            elif card[0] == "Two":
+            elif card.get_face() == "Two":
                 value += 2
-            elif card[0] == "Three":
+            elif card.get_face() == "Three":
                 value += 3
-            elif card[0] == "Four":
+            elif card.get_face() == "Four":
                 value += 4
-            elif card[0] == "Five":
+            elif card.get_face() == "Five":
                 value += 5
-            elif card[0] == "Six":
+            elif card.get_face() == "Six":
                 value += 6
-            elif card[0] == "Seven":
+            elif card.get_face() == "Seven":
                 value += 7
-            elif card[0] == "Eight":
+            elif card.get_face() == "Eight":
                 value += 8
-            elif card[0] == "Nine":
+            elif card.get_face() == "Nine":
                 value += 9
-            elif card[0] in ["Ten", "Jack", "Queen", "King"]:
+            elif card.get_face() in ["Ten", "Jack", "Queen", "King"]:
                 value += 10
         if value == 21:
             print("{} has twenty-one!".format(player.name))

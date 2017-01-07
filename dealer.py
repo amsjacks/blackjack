@@ -1,5 +1,6 @@
 from deck import Deck
 
+
 class Dealer(object):
     name = "The dealer"
 
@@ -9,7 +10,7 @@ class Dealer(object):
         self.hand = []
 
     def take_turn(self):
-        score = self.game.evaluate(self.hand)
+        score = self.game.evaluate_hand(self, self.hand)
         if score > 15:
             self.game.next_turn()
         else:
@@ -28,15 +29,19 @@ class Dealer(object):
         starting_hand = self.game.get_starting_hand()
         x = 0
         while x in range(starting_hand-1):
-            self.hand.append(self.deal())
+            self.add_to_hand(self.deal())
             x += 1
         y = 0
         while y in range(starting_hand):
             for player in self.game.get_players():
-                player.add_to_hand(self.deal())
-                y += 1
+                if not player == self:
+                    player.add_to_hand(self.deal())
+                    y += 1
         print("All hands have been dealt!")
-        self.game.next_turn()
+        #self.game.next_turn()
+
+    def add_to_hand(self, card):
+        self.hand.append(card)
 
     def show_hand(self):
         for card in self.hand:

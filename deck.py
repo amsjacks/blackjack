@@ -7,6 +7,9 @@ class Card(object):
         self.name = name
         self.revealed = False
 
+    def get_face(self):
+        return self.face
+
     def get_name(self):
         if self.name:
             return self.name
